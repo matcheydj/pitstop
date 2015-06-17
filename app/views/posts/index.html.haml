@@ -1,8 +1,29 @@
-- @post.each do |post|
-	= link_to (image_tag post.image.url(:small)), post
-	%h2= link_to post.title, post
-	%p
-		= post.reviews.count
-		Reviews
-
-= link_to "Add New Bathroom", new_post_path
+- if user_signed_in?
+	%p#intro
+		Hello
+		= current_user.name
+		%br/
+		%span
+			Share your favorite Pit Stops.
+- else
+	%p#intro
+		Welcome to Pit Stop
+		%br/
+		%span
+			Share your favorite Pit Stops and find a bathroom near you.
+#posts
+	- @post.each do |post|
+		.post
+			.post_image
+				= link_to (image_tag post.image.url(:small)), post
+			.post_content
+				.title
+					%h2= link_to post.title, post
+				.data.clearfix
+					%p.username
+						Shared by
+						= post.user.name
+					%p.buttons
+						%span
+							%i.fa.fa-comments-o
+							= post.reviews.count

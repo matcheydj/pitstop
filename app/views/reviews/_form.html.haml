@@ -1,13 +1,4 @@
-%h3 butt 
-= form_for([@post, @review]) do |f|
-  - if @review.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@review.errors.count, "error")
-        prohibited this review from being saved:
-      %ul
-        - @review.errors.full_messages.each do |message|
-          %li= message
+= simple_form_for([@post, @post.reviews.build]) do |f|
   .field
     = f.label :cleanliness
     %br/
@@ -31,9 +22,9 @@
   .field
     = f.label :comment
     %br/
-    = f.text_area :comment
-  .actions
-    = f.submit
+    = f.text_area :comment, placeholder: "Leave comment"
+  = f.button :submit, class: "button"
+
 :javascript
   $('#cleanliness').raty({
     path: '/assets/',

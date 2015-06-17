@@ -1,10 +1,25 @@
-= image_tag @post.image.url(:medium)
-%h1= @post.title
-%p= @post.address
-%p= @post.description
-%p= @post.user.name
-
-#comment
+#post_show
+	%h1= @post.title
+	%p.username
+		Shared by
+		= @post.user.name
+		about
+		= time_ago_in_words(@post.created_at)
+	.clearfix
+		.post_image_description
+			= image_tag @post.image.url(:medium)
+			.description= simple_format(@post.address)
+			.description= simple_format(@post.description)
+		.post_data
+			.description= simple_format(@post.address)
+			%p.data	
+				%i.fa.fa-comments-o
+				= pluralize(@post.reviews.count, "Reviews")
+			- if @post.user == current_user
+				= link_to "Edit", edit_post_path(@post), class: "data"
+				= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data"
+			= link_to "Leave Review", new_post_review_path(@post), class: "button"
+#comments
 	- if @reviews.blank?
 		%h3 No reviews just yet, would you like to add the first?
 		= link_to "Leave a Review", new_post_review_path(@post)
@@ -17,16 +32,12 @@
 				.star-rating{"data-score" => "#{review.scent}"}
 				.star-rating{"data-score" => "#{review.ecofriendliness}"}
 				.star-rating{"data-score" => "#{review.ambiance}"}
+				%br/
 				%p.content= review.comment
 				%p.username= review.user.name
+	.clearfix
+		= link_to "Leave Review", new_post_review_path(@post), class: "button"
 
-
-= link_to "Leave a Review", new_post_review_path(@post)
-
-
-= link_to "Edit", edit_post_path(@post)
-= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }
-= link_to "Home", root_path
 
 :javascript
 	$('.star-rating').raty({
