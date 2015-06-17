@@ -2,7 +2,7 @@
 	= link_to (image_tag post.image.url(:small)), post
 	%h2= link_to post.title, post
 	%p
-		= post.comments.count
-		Comments
+		= post.reviews.count
+		Reviews
 
 = link_to "Add New Bathroom", new_post_path

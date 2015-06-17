@@ -1,4 +1,4 @@
-<%= form_for(@review) do |f| %>
+<%= form_for([@post, @review]) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -13,23 +13,23 @@
 
   <div class="field">
     <%= f.label :cleanliness %><br>
-    <%= f.number_field :cleanliness %>
+    <div id="cleanliness"></div>
   </div>
   <div class="field">
     <%= f.label :safety %><br>
-    <%= f.number_field :safety %>
+    <div id="safety"></div>
   </div>
   <div class="field">
     <%= f.label :scent %><br>
-    <%= f.number_field :scent %>
+    <div id="scent"></div>
   </div>
   <div class="field">
     <%= f.label :ecofriendliness %><br>
-    <%= f.number_field :ecofriendliness %>
+    <div id="ecofriendliness"></div>
   </div>
   <div class="field">
     <%= f.label :ambiance %><br>
-    <%= f.number_field :ambiance %>
+    <div id="ambiance"></div>
   </div>
   <div class="field">
     <%= f.label :comment %><br>
@@ -39,3 +39,26 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $('#cleanliness').raty({
+    path: '/assets/',
+    scoreName: 'review[cleanliness]'
+  });
+  $('#safety').raty({
+    path: '/assets/',
+    scoreName: 'review[safety]'
+  });
+  $('#scent').raty({
+    path: '/assets/',
+    scoreName: 'review[scent]'
+  });
+  $('#ecofriendliness').raty({
+    path: '/assets/',
+    scoreName: 'review[ecofriendliness]'
+  });
+  $('#ambiance').raty({
+    path: '/assets/',
+    scoreName: 'review[ambiance]'
+  });
+</script>

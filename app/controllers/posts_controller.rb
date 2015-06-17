@@ -7,7 +7,13 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@comments = Comment.where(post_id: @post)
+		@reviews = Review.where(post_id: @post).order("created_at DESC")
+
+		if @review.blank?
+			@avg_review = 0
+		else
+			@avg_review = @reviews.average(:cleanliness, :safety, :scent, :ecofriendliness, :ambiance).round(2)
+		end
 	end
 
 	def new
