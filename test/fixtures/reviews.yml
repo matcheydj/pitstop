@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cleanliness: 1
+  safety: 1
+  scent: 1
+  eco-friendliness: 1
+  ambiance: 1
+  comment: MyText
+
+two:
+  cleanliness: 1
+  safety: 1
+  scent: 1
+  eco-friendliness: 1
+  ambiance: 1
+  comment: MyText
