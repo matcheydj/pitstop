@@ -21,4 +21,4 @@ $(document).ready(function(){
 			$(this).remove();
 		})
 	}, 4500);
-});
+}); 
