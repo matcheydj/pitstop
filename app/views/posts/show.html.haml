@@ -4,22 +4,22 @@
 %p= @post.description
 %p= @post.user.name
 
-- if @reviews.blank?
-	%h3 No reviews just yet, would you like to add the first?
-	= link_to "Leave a Review", new_post_review_path(@post)
-- else
-	- @reviews.each do |review|
-		.reviews
-			.star-rating{"data-score" => "#{review.cleanliness}"}
-			.star-rating{"data-score" => "#{review.safety}"}
-			.star-rating{"data-score" => "#{review.scent}"}
-			.star-rating{"data-score" => "#{review.ecofriendliness}"}
-			.star-rating{"data-score" => "#{review.ambiance}"}
-			%p= review.comment
-			%p Posted by 
-			= review.user.name
-			%br/
-			%br/
+#comment
+	- if @reviews.blank?
+		%h3 No reviews just yet, would you like to add the first?
+		= link_to "Leave a Review", new_post_review_path(@post)
+	- else
+		%h2.comment_count= pluralize(@post.reviews.count, "Reviews")
+		- @reviews.each do |review|
+			.comment
+				.star-rating{"data-score" => "#{review.cleanliness}"}
+				.star-rating{"data-score" => "#{review.safety}"}
+				.star-rating{"data-score" => "#{review.scent}"}
+				.star-rating{"data-score" => "#{review.ecofriendliness}"}
+				.star-rating{"data-score" => "#{review.ambiance}"}
+				%p.content= review.comment
+				%p.username= review.user.name
+
 
 = link_to "Leave a Review", new_post_review_path(@post)
 
