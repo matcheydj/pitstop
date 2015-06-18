@@ -27,10 +27,15 @@
 		%h2.comment_count= pluralize(@post.reviews.count, "Reviews")
 		- @reviews.each do |review|
 			.comment
+				%p Cleanliness
 				.star-rating{"data-score" => "#{review.cleanliness}"}
+				%p Safety
 				.star-rating{"data-score" => "#{review.safety}"}
+				%p Scent
 				.star-rating{"data-score" => "#{review.scent}"}
+				%p Eco-Friendliness
 				.star-rating{"data-score" => "#{review.ecofriendliness}"}
+				%p Ambiance
 				.star-rating{"data-score" => "#{review.ambiance}"}
 				%br/
 				%p.content= review.comment
