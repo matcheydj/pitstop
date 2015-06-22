@@ -22,7 +22,6 @@
 #comments
 	- if @reviews.blank?
 		%h3 No reviews just yet, would you like to add the first?
-		= link_to "Leave a Review", new_post_review_path(@post)
 	- else
 		%h2.comment_count= pluralize(@post.reviews.count, "Reviews")
 		- @reviews.each do |review|
