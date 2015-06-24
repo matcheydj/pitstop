@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 	has_many :reviews
 
 	has_attached_file :image, 
-					  styles: { medium: "700x500#", small: "350x250>" }
+					  styles: { medium: "700x500#", small: "350x250>" },
 					  storage: :s3,
                   	  :s3_credentials => "#{Rails.root}/config/s3.yml",
                   	  :path => "/images/:id/:style.:extension",
