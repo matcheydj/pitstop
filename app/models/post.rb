@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
 	has_attached_file :image, 
 					  styles: { medium: "700x500#", small: "350x250>" },
 					  storage: :s3,
-                  	  :s3_credentials => "#{Rails.root}/config/s3.yml",
                   	  :path => "/images/:id/:style.:extension",
                   	  :url => '/:class/:attachment/:id/:style_:basename.:extension'
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
