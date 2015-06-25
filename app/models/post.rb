@@ -8,6 +8,6 @@ class Post < ActiveRecord::Base
 					  storage: :s3,
                   	  :s3_credentials => "#{Rails.root}/config/s3.yml",
                   	  :path => "/images/:id/:style.:extension",
-                  	  :url => ":s3_domain_url"
+                  	  :url => '/:class/:attachment/:id/:style_:basename.:extension'
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end
